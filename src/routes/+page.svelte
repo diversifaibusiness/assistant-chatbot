@@ -1,42 +1,71 @@
 <script lang="ts">
-	import { useAssistant } from '$lib/svelte-ai/svelte';
-	import ChatList from '$lib/components/global/ChatList.svelte';
-	import ChatButtons from '$lib/components/assistant/ChatButtons.svelte';
-	import PromptForm from '$lib/components/assistant/PromptForm.svelte';
-	import {
-		addNewMessage,
-		getCurrentThreadId,
-		getExistingMessages,
-		setCurrentThreadId
-	} from '$lib/services/localStorage';
+	import { goto } from '$app/navigation';
+	import { setCurrentAssistantId } from '$lib/services/localStorage';
 
-	const { status, messages, input, submitMessage, threadId, setMessages, stop } = useAssistant({
-		api: '/api/assistant',
-		threadId: getCurrentThreadId(),
-		onMessage: addNewMessage
-	});
-	// set initial messages if any
-	setMessages(getExistingMessages());
+	let assistantId = '';
 
-	$: {
-		if ($threadId && $threadId !== getCurrentThreadId()) {
-			console.log('setting thread id');
-			setCurrentThreadId($threadId);
-		}
-	}
+	const handleClick = () => {
+    setCurrentAssistantId(assistantId)
+		goto('/assistant');
+	};
 </script>
 
-<div class="row-span-9 mx-auto grid w-full grid-rows-12 px-2">
-	<ChatList {messages} />
-</div>
-
-<div class="row-span-2 flex flex-col justify-center">
-	<div class="mx-auto w-full space-x-2 px-2">
-		<ChatButtons {messages} {status} {stop} {setMessages} />
-
-		<div class="  bg-background px-2 py-1">
-			<PromptForm {input} {submitMessage} {status} />
-		</div>
+<main>
+	<div class="container">
+		<label for="codeInput">Enter code</label>
+		<input type="text" id="codeInput" bind:value={assistantId} />
+		<button on:click={handleClick}>Enter</button>
 	</div>
-</div>
-<!-- <Chat /> -->
+</main>
+
+<style>
+	main {
+		height: 100%;
+		margin: 0;
+		font-family: Arial, sans-serif;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #f0f0f0;
+		color: black;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background: white;
+		padding: 20px;
+		border-radius: 10px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	label {
+		margin-bottom: 10px;
+		font-size: 18px;
+	}
+
+	input[type='text'] {
+		width: 100%;
+		padding: 10px;
+		margin-bottom: 20px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		font-size: 16px;
+	}
+
+	button {
+		padding: 10px 20px;
+		font-size: 16px;
+		color: white;
+		background-color: #007bff;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+
+	button:hover {
+		background-color: #0056b3;
+	}
+</style>
