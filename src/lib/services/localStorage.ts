@@ -1,6 +1,19 @@
 import type { CreateMessage, Message } from 'ai';
 // import type { Message } from '$lib/svelte-ai/shared/types';
 
+export const getCurrentAssistantId = (): string | undefined => {
+	const assistantId = localStorage.getItem('assistantId');
+	return assistantId ?? undefined;
+};
+
+export const setCurrentAssistantId = (assistantId: string) => {
+	localStorage.setItem('assistantId', assistantId);
+};
+
+export const clearAssistantId = () => {
+	localStorage.removeItem('assistantId');
+};
+
 export const getCurrentThreadId = (): string | undefined => {
 	const threadId = localStorage.getItem('threadId');
 	return threadId ?? undefined;
