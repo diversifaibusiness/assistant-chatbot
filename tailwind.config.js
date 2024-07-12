@@ -14,7 +14,7 @@ const config = {
 			colors: {
 				background: '#f9f9f9',
 				foreground: '#d4d4d8',
-				primary: '00D300',
+				primary: '#00D300',
 				secondary: '#fca5a5',
 				border: '#475569',
 				text: '#303030',
