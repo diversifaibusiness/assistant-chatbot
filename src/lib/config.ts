@@ -6,7 +6,7 @@ export const AI_ASSISTANT = 'PayAsYouPrompt.com';
 
 export const AI_DESCRIPTION = 'Start your conversation';
 
-export const AI_AVATAR_PATH = '/Palm.png';
+export const AI_AVATAR_PATH = '/palmlogo.png';
 
 export const USER_AVATAR_PATH = '/user.png';
 
