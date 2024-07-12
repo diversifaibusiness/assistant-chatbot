@@ -1,4 +1,4 @@
-export const MODEL = 'gpt-3.5-turbo';
+export const MODEL = 'gpt-4-turbo';
 
 export const ENDPOINT = '/api/chat';
 
