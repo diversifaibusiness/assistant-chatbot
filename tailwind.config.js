@@ -12,12 +12,12 @@ const config = {
 		},
 		extend: {
 			colors: {
-				background: '#e2e8f0',
+				background: '#f9f9f9',
 				foreground: '#d4d4d8',
-				primary: 'pink',
+				primary: '00D300',
 				secondary: '#fca5a5',
 				border: '#475569',
-				text: '#18181b',
+				text: '#303030',
 				text2: '#52525b'
 			},
 			fontFamily: {
